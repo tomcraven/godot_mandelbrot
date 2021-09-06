@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://mandelbrot.gd" type="Script" id=1]
+[ext_resource path="res://mandelbrot.gdshader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/position = Vector2( 0, 0 )
+shader_param/zoom = 1.0
+shader_param/detail = 100
+
+[sub_resource type="Gradient" id=5]
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 5 )
+
+[node name="mandelbrot" type="Control"]
+margin_right = 640.0
+margin_bottom = 360.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+material = SubResource( 2 )
+margin_right = 640.0
+margin_bottom = 360.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 640, 360 )
+
+[node name="TextureRect" type="TextureRect" parent="ViewportContainer/Viewport"]
+margin_right = 320.0
+margin_bottom = 180.0
+texture = SubResource( 4 )
